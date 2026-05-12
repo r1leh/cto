@@ -1,426 +1,411 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BRONTO DETAILING | Чисто по красоте — Мегион</title>
-    <meta name="description" content="Детейлинг-студия BRONTO DETAILING в Мегионе. Керамика, полировка, химчистка, оклейка плёнкой.">
-    
+    <meta name="description"
+        content="Детейлинг-студия BRONTO DETAILING в Мегионе. Керамика, полировка, химчистка, оклейка плёнкой. Премиальный уход за вашим автомобилем.">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Onest:wght@300;400;500&amp;display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Onest:wght@300;400;500&display=swap" rel="stylesheet">
+
     <style>
+        /* ── Variables & Reset ── */
         :root {
-            --bg-light: #F2F0EB;
-            --text-dark: #1C1C1E;
-            --text-gray: #5A5A56;
-            --accent: #1C1C1E;
-            --divider: rgba(22,22,20,0.10);
+            --bg:       #F2F0EB;
+            --dark:     #161614;
+            --text:     #1C1C1E;
+            --gray:     #5A5A56;
+            --divider:  rgba(22,22,20,0.10);
+            --gold:     #B8965A;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Onest', system-ui, sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.55;
-            font-size: 14px;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
             overflow-x: hidden;
         }
-        
-        h1, h2, .logo {
+
+        h1, h2, h3, .logo {
             font-family: 'Unbounded', sans-serif;
             font-weight: 900;
-            text-transform: uppercase;
         }
-        
-        .container {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 20px;
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+        /* ── Reveal animation ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.6s cubic-bezier(.25,.1,.25,1),
+                        transform 0.6s cubic-bezier(.25,.1,.25,1);
         }
-        
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(242, 240, 235, 0.95);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--divider);
-        }
-        
-        .nav {
-            display: flex;
+        .reveal.visible { opacity: 1; transform: none; }
+
+        /* ── Buttons ── */
+        .btn {
+            display: inline-flex;
             align-items: center;
-            justify-content: space-between;
-            height: 80px;
-        }
-        
-        .logo {
-            font-size: 24px;
-            letter-spacing: -0.02em;
-            color: var(--text-dark);
-            text-decoration: none;
-        }
-        
-        .nav-links {
-            display: none;
-            gap: 32px;
-            font-size: 15px;
-        }
-        
-        .nav-links a {
-            color: var(--text-dark);
-            text-decoration: none;
-            transition: opacity 0.2s;
-        }
-        
-        .nav-links a:hover {
-            opacity: 0.7;
-        }
-        
-        .cta-btn {
-            background-color: var(--accent);
-            color: #F2F0EB;
+            gap: 8px;
             padding: 14px 28px;
-            border: none;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.15s;
             font-size: 15px;
-        }
-        
-        .cta-btn:hover {
-            opacity: 0.85;
-            transform: translateY(-1px);
-        }
-        
-        /* Hero */
-        #hero {
-            height: 100vh;
-            min-height: 620px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            position: relative;
-            background-color: #161614;
-            color: #F2F0EB;
-            overflow: hidden;
-        }
-        
-        .hero-content {
-            padding: 0 40px;
-            z-index: 2;
-        }
-        
-        .hero-badge {
-            display: inline-block;
-            background-color: rgba(255,255,255,0.1);
-            color: #F2F0EB;
-            padding: 6px 16px;
-            border-radius: 9999px;
-            font-size: 13px;
-            letter-spacing: 0.05em;
-            margin-bottom: 24px;
-        }
-        
-        .hero-title {
-            font-size: clamp(52px, 8vw, 96px);
-            line-height: 1.05;
-            margin-bottom: 24px;
-        }
-        
-        .hero-desc {
-            font-size: 18px;
-            max-width: 420px;
-            margin-bottom: 40px;
-            opacity: 0.9;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        
-        .hero-image {
-            position: relative;
-            height: 100%;
-            background-image: linear-gradient(rgba(22,22,20,0.4), rgba(22,22,20,0.4)), url('https://picsum.photos/id/1015/1200/1200');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .hero-stats {
-            position: absolute;
-            bottom: 60px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 60px;
-            background-color: rgba(22,22,20,0.8);
-            padding: 20px 60px;
-            border-radius: 9999px;
-            z-index: 10;
-        }
-        
-        /* Sections */
-        section {
-            padding: 120px 0;
-        }
-        
-        .section-title {
-            font-size: clamp(28px, 5vw, 44px);
-            text-align: center;
-            margin-bottom: 80px;
-            letter-spacing: -0.02em;
-        }
-        
-        /* Services */
-        #services {
-            background-color: var(--bg-light);
-        }
-        
-        .services-list {
-            max-width: 960px;
-            margin: 0 auto;
-        }
-        
-        .service-item {
-            display: grid;
-            grid-template-columns: 48px 1fr auto;
-            align-items: center;
-            gap: 24px;
-            padding: 32px 0;
-            border-bottom: 1px solid var(--divider);
-            transition: background-color 0.3s;
-            position: relative;
-        }
-        
-        .service-item:hover {
-            background-color: rgba(22,22,20,0.03);
-        }
-        
-        .service-num {
-            font-size: 28px;
-            font-weight: 900;
-            color: #ccc;
-        }
-        
-        .service-info h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
-        }
-        
-        .service-price {
             font-weight: 500;
-            font-size: 18px;
+            font-family: inherit;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.18s;
+            border-radius: 2px;
             white-space: nowrap;
         }
-        
-        .arrow {
-            position: absolute;
-            right: 20px;
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: all 0.3s;
+        .btn-primary { background: var(--text); color: var(--bg); }
+        .btn-primary:hover { opacity: 0.82; transform: translateY(-1px); }
+        .btn-outline { background: transparent; border: 2px solid currentColor; }
+        .btn-outline:hover { background: rgba(255,255,255,0.08); }
+
+        /* ── Header ── */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(242,240,235,0.96);
+            backdrop-filter: blur(14px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--divider);
+            transition: box-shadow 0.3s;
         }
-        
-        .service-item:hover .arrow {
-            opacity: 1;
-            transform: translateX(0);
+        header.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+
+        .nav { display: flex; align-items: center; height: 76px; gap: 40px; }
+
+        .logo {
+            font-size: 20px;
+            letter-spacing: -0.03em;
+            color: var(--text);
+            text-decoration: none;
+            text-transform: uppercase;
+            flex-shrink: 0;
         }
-        
-        /* Gallery */
-        #works {
-            background-color: #161614;
-            color: #F2F0EB;
+        .logo span { font-weight: 300; font-size: 14px; opacity: 0.55; }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            margin-left: auto;
         }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
+        .nav-links a { color: var(--text); text-decoration: none; font-size: 14px; transition: opacity 0.2s; }
+        .nav-links a:hover { opacity: 0.55; }
+
+        .burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            margin-left: auto;
         }
-        
-        .gallery-item {
-            position: relative;
-            aspect-ratio: 4 / 3;
+        .burger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+
+        /* ── Mobile menu ── */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 76px; left: 0; right: 0;
+            background: var(--bg);
+            flex-direction: column;
+            padding: 28px 24px;
+            gap: 20px;
+            border-bottom: 1px solid var(--divider);
+            z-index: 999;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 22px;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        /* ── Sections ── */
+        section { padding: 100px 0; }
+
+        .section-head { text-align: center; margin-bottom: 60px; }
+        .section-tag {
+            display: inline-block;
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: clamp(28px, 4vw, 42px);
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+        }
+
+        .accent { color: var(--gold); }
+
+        /* ── Hero ── */
+        #hero {
+            min-height: 100vh;
+            background: var(--dark);
+            color: var(--bg);
+            display: flex;
+            align-items: center;
+            padding-top: 76px;
             overflow: hidden;
-            border-radius: 4px;
         }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease, filter 0.5s ease;
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 60px 0;
         }
-        
-        .gallery-item:hover img {
-            transform: scale(1.06);
-            filter: saturate(1.2);
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.14);
+            color: rgba(255,255,255,0.8);
+            padding: 8px 18px;
+            border-radius: 9999px;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            margin-bottom: 28px;
         }
-        
+        .dot {
+            width: 7px; height: 7px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: 0.6; transform: scale(1.35); }
+        }
+
+        .hero-title {
+            font-size: clamp(44px, 7vw, 88px);
+            line-height: 1.0;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .hero-title .accent { display: block; }
+
+        .hero-desc { font-size: 17px; max-width: 400px; opacity: 0.75; margin-bottom: 40px; line-height: 1.65; }
+
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 56px; }
+        #hero .btn-primary { padding: 16px 36px; font-size: 16px; }
+        #hero .btn-outline { color: var(--bg); border-color: rgba(242,240,235,0.35); }
+
+        .stats-bar { display: flex; gap: 40px; flex-wrap: wrap; }
+        .stat { display: flex; flex-direction: column; gap: 2px; }
+        .stat-num { font-family: 'Unbounded', sans-serif; font-size: 28px; font-weight: 900; }
+        .stat-label { font-size: 12px; color: rgba(242,240,235,0.55); }
+
+        .hero-visual { position: relative; }
+        .hero-car-frame { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 4/3; }
+        .hero-car-frame img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.88) saturate(1.1); }
+        .hero-car-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(22,22,20,0.3) 0%, transparent 60%);
+        }
+
+        /* ── Services ── */
+        #services { background: var(--bg); }
+
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+
+        .service-card { background: white; padding: 40px 32px; transition: background 0.3s, transform 0.3s; }
+        .service-card:hover { background: var(--dark); color: var(--bg); transform: translateY(-4px); }
+
+        .service-icon {
+            width: 56px; height: 56px;
+            background: var(--bg);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 24px;
+            transition: background 0.3s;
+            color: var(--text);
+        }
+        .service-card:hover .service-icon { background: rgba(255,255,255,0.1); color: var(--bg); }
+
+        .service-card h3 {
+            font-size: 15px;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .service-card p { font-size: 14px; color: var(--gray); margin-bottom: 20px; transition: color 0.3s; }
+        .service-card:hover p { color: rgba(242,240,235,0.6); }
+
+        .service-price { font-size: 15px; font-weight: 700; transition: color 0.3s; }
+        .service-card:hover .service-price { color: var(--bg); }
+
+        /* ── Works ── */
+        #works { background: var(--dark); color: var(--bg); }
+        #works .section-tag { color: rgba(242,240,235,0.45); }
+        #works .section-title { color: var(--bg); }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+        .gallery-item { position: relative; aspect-ratio: 16/10; overflow: hidden; border-radius: 4px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease, filter 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.06); filter: saturate(1.2); }
+
         .gallery-overlay {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            padding: 32px 24px 20px;
+            display: flex; flex-direction: column; gap: 4px;
             color: white;
-            padding: 32px 24px 24px;
-            transform: translateY(20px);
+            transform: translateY(12px);
             opacity: 0;
             transition: all 0.4s;
         }
-        
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-            opacity: 1;
+        .gallery-item:hover .gallery-overlay { transform: none; opacity: 1; }
+        .gallery-overlay strong { font-size: 16px; }
+        .gallery-overlay span { font-size: 13px; opacity: 0.7; }
+
+        .gallery-link { text-align: center; margin-top: 48px; }
+        .gallery-link a {
+            color: var(--bg);
+            text-decoration: none;
+            font-size: 15px;
+            border-bottom: 1px solid rgba(242,240,235,0.35);
+            padding-bottom: 4px;
+            transition: border-color 0.2s;
         }
-        
-        /* Social Feed */
-        #social {
-            padding: 80px 0;
+        .gallery-link a:hover { border-color: var(--bg); }
+
+        /* ── Reviews ── */
+        #reviews { background: var(--bg); }
+
+        .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+        .review-card { background: white; padding: 36px 32px; border-radius: 4px; }
+
+        .review-stars { color: #F59E0B; font-size: 20px; margin-bottom: 16px; }
+
+        .review-text { font-size: 15px; line-height: 1.65; color: #3a3a38; margin-bottom: 24px; }
+
+        .review-author { display: flex; align-items: center; gap: 14px; }
+
+        .review-avatar {
+            width: 44px; height: 44px;
+            background: var(--dark);
+            color: var(--bg);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: 'Unbounded', sans-serif;
+            flex-shrink: 0;
         }
-        
-        /* Booking */
-        #booking {
-            background-color: #161614;
-            color: #F2F0EB;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-        }
-        
-        .booking-form {
-            background-color: #F2F0EB;
-            color: #1C1C1E;
-            padding: 60px;
-            border-radius: 8px;
-        }
-        
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-        }
-        
-        .form-group {
-            position: relative;
-        }
-        
-        label {
-            position: absolute;
-            top: -10px;
-            left: 0;
-            font-size: 11px;
-            letter-spacing: 0.1em;
+
+        .review-name { font-weight: 600; font-size: 15px; }
+        .review-car { font-size: 12px; color: var(--gray); margin-top: 2px; }
+
+        /* ── Booking ── */
+        #booking { background: var(--dark); color: var(--bg); }
+        #booking .section-tag { color: rgba(242,240,235,0.45); }
+
+        .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+
+        .booking-info h2 {
+            font-size: clamp(28px, 4vw, 44px);
+            letter-spacing: -0.03em;
             text-transform: uppercase;
-            color: #5A5A56;
+            margin: 12px 0 20px;
         }
-        
-        input, select {
-            width: 100%;
+        .booking-info > p { font-size: 15px; opacity: 0.7; margin-bottom: 36px; line-height: 1.7; }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .contact-icon {
+            width: 44px; height: 44px;
+            background: rgba(255,255,255,0.07);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+            color: var(--bg);
+        }
+        .contact-item > div:last-child { display: flex; flex-direction: column; gap: 3px; }
+        .contact-item span { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.5; }
+        .contact-item strong { font-size: 15px; }
+
+        .booking-form { background: var(--bg); color: var(--text); padding: 48px; border-radius: 6px; }
+        .booking-form h3 { font-size: 18px; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 32px; }
+        .booking-form .btn-submit { width: 100%; justify-content: center; padding: 16px; font-size: 15px; }
+
+        form { display: flex; flex-direction: column; gap: 28px; }
+
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); }
+        .form-group input,
+        .form-group select {
             border: none;
-            border-bottom: 2px solid #ccc;
+            border-bottom: 2px solid #d0cec9;
             background: transparent;
-            padding: 12px 0;
+            padding: 10px 0;
             font-size: 16px;
             font-family: inherit;
+            color: var(--text);
+            transition: border-color 0.2s;
         }
-        
-        input:focus, select:focus {
-            outline: none;
-            border-color: #1C1C1E;
+        .form-group input:focus,
+        .form-group select:focus { outline: none; border-color: var(--text); }
+
+        /* ── Footer ── */
+        footer { background: #0e0e0c; color: var(--bg); padding: 40px 0; }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
         }
-        
-        /* Reviews */
-        #reviews {
-            background-color: #161614;
-            color: #F2F0EB;
-        }
-        
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 32px;
-        }
-        
-        .review-card {
-            background-color: rgba(255,255,255,0.05);
-            padding: 40px;
-            border-radius: 8px;
-        }
-        
-        .stars {
-            color: #FFD700;
-            font-size: 22px;
-            margin-bottom: 20px;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: #1C1C1E;
-            color: #F2F0EB;
-            padding: 60px 0 30px;
-            text-align: center;
-        }
-        
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Mobile */
-        @media (max-width: 800px) {
-            #hero {
-                grid-template-columns: 1fr;
-                height: auto;
-                padding-top: 100px;
-            }
-            
-            .hero-image {
-                height: 420px;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            #booking {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Custom cursor */
+        .footer-copy { font-size: 13px; opacity: 0.5; }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { color: var(--bg); text-decoration: none; font-size: 13px; opacity: 0.5; transition: opacity 0.2s; }
+        .footer-links a:hover { opacity: 1; }
+
+        /* ── Custom cursor (desktop) ── */
         .custom-cursor {
             position: fixed;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #1C1C1E;
+            width: 20px; height: 20px;
+            border: 2px solid var(--text);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
@@ -428,67 +413,90 @@
             mix-blend-mode: difference;
             transition: width 0.2s, height 0.2s;
         }
-        
-        @media (min-width: 1200px) {
-            .custom-cursor {
-                display: block;
-            }
+        @media (min-width: 1200px) { .custom-cursor { display: block; } }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .reviews-grid  { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 72px 0; }
+
+            .nav-links, header .btn { display: none; }
+            .burger { display: flex; }
+
+            .hero-grid { grid-template-columns: 1fr; gap: 36px; padding: 40px 0; }
+            .hero-visual { order: -1; }
+            .stats-bar { gap: 24px; }
+
+            .services-grid { grid-template-columns: 1fr; }
+            .gallery-grid  { grid-template-columns: 1fr; }
+            .reviews-grid  { grid-template-columns: 1fr; }
+
+            .booking-grid { grid-template-columns: 1fr; gap: 48px; }
+            .booking-form { padding: 32px 24px; }
+
+            .footer-inner { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
+
 <body>
+
     <!-- HEADER -->
-    <header>
+    <header id="header">
         <div class="container">
-            <div class="nav">
-                <a href="#" class="logo">BRONTO</a>
-                
-                <div class="nav-links">
-                    <a href="#services">Услуги</a>
-                    <a href="#works">Работы</a>
-                    <a href="#booking">Записаться</a>
-                    <a href="#reviews">Отзывы</a>
-                </div>
-                
-                <button onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })" class="cta-btn">
-                    Записаться
+            <nav class="nav">
+                <a href="#" class="logo">BRONTO<span>.detailing</span></a>
+                <ul class="nav-links">
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#works">Работы</a></li>
+                    <li><a href="#reviews">Отзывы</a></li>
+                    <li><a href="#booking">Контакты</a></li>
+                </ul>
+                <a href="#booking" class="btn btn-primary">Записаться</a>
+                <button class="burger" id="burger" aria-label="Меню">
+                    <span></span><span></span><span></span>
                 </button>
-            </div>
+            </nav>
         </div>
     </header>
 
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#services" onclick="closeMobile()">Услуги</a>
+        <a href="#works" onclick="closeMobile()">Работы</a>
+        <a href="#reviews" onclick="closeMobile()">Отзывы</a>
+        <a href="#booking" onclick="closeMobile()">Записаться</a>
+    </div>
+
     <!-- HERO -->
     <section id="hero">
-        <div class="hero-content container">
-            <div class="hero-badge">ДЕТЕЙЛИНГ • МЕГИОН</div>
-            <h1 class="hero-title">ЧИСТО<br>ПО КРАСОТЕ</h1>
-            <p class="hero-desc">Профессиональный детейлинг в Мегионе. Возвращаем автомобилям первозданный вид.</p>
-            
-            <div class="hero-buttons">
-                <button onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })" class="cta-btn" style="padding: 18px 36px; font-size: 17px;">
-                    Записаться онлайн
-                </button>
-                <button onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' })" class="cta-btn" style="background: transparent; border: 2px solid #F2F0EB;">
-                    Наши услуги
-                </button>
-            </div>
-        </div>
-        
-        <div class="hero-image"></div>
-        
-        <!-- Stats -->
-        <div class="hero-stats">
-            <div>
-                <strong style="font-size: 28px; display: block;">800+</strong>
-                <span style="font-size: 13px; opacity: 0.7;">авто обработано</span>
-            </div>
-            <div>
-                <strong style="font-size: 28px; display: block;">5+</strong>
-                <span style="font-size: 13px; opacity: 0.7;">лет опыта</span>
-            </div>
-            <div>
-                <strong style="font-size: 28px; display: block;">98%</strong>
-                <span style="font-size: 13px; opacity: 0.7;">довольных клиентов</span>
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge"><span class="dot"></span> Детейлинг • Мегион</div>
+                    <h1 class="hero-title">Чисто<span class="accent">по красоте</span></h1>
+                    <p class="hero-desc">Профессиональный детейлинг в Мегионе. Возвращаем автомобилям первозданный вид с
+                        гарантией качества.</p>
+                    <div class="hero-buttons">
+                        <a href="#booking" class="btn btn-primary">Записаться онлайн →</a>
+                        <a href="#services" class="btn btn-outline">Наши услуги</a>
+                    </div>
+                    <div class="stats-bar">
+                        <div class="stat"><span class="stat-num">800+</span><span class="stat-label">авто обработано</span></div>
+                        <div class="stat"><span class="stat-num">5+</span><span class="stat-label">лет опыта</span></div>
+                        <div class="stat"><span class="stat-num">98%</span><span class="stat-label">довольных клиентов</span></div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-car-frame">
+                        <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=600&fit=crop"
+                            alt="Детейлинг автомобиля">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -496,61 +504,76 @@
     <!-- SERVICES -->
     <section id="services">
         <div class="container">
-            <h2 class="section-title">Услуги</h2>
-            
-            <div class="services-list">
-                <div class="service-item fade-in">
-                    <div class="service-num">01</div>
-                    <div class="service-info">
-                        <h3>Керамическое покрытие</h3>
-                        <p>Защита ЛКП на 2–5 лет</p>
+            <div class="section-head">
+                <span class="section-tag">Что мы делаем</span>
+                <h2 class="section-title">Наши услуги</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L4 5V11C4 16.5 8 21 12 22C16 21 20 16.5 20 11V5L12 2Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
-                    <div class="service-price">от 15 000 ₽ <span class="arrow">→</span></div>
+                    <h3>Керамическое покрытие</h3>
+                    <p>Защита ЛКП на 2–5 лет. Глубокий блеск и гидрофобный эффект.</p>
+                    <span class="service-price">от 15 000 ₽</span>
                 </div>
-                
-                <div class="service-item fade-in" style="animation-delay: 100ms">
-                    <div class="service-num">02</div>
-                    <div class="service-info">
-                        <h3>Полировка кузова</h3>
-                        <p>Устранение царапин и голограмм</p>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L13.09 8.26L19 9.27L14.5 13.14L15.64 19L12 15.77L8.36 19L9.5 13.14L5 9.27L10.91 8.26L12 2Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
-                    <div class="service-price">от 8 000 ₽ <span class="arrow">→</span></div>
+                    <h3>Полировка кузова</h3>
+                    <p>Устранение царапин, голограмм и потускнения лака.</p>
+                    <span class="service-price">от 8 000 ₽</span>
                 </div>
-                
-                <div class="service-item fade-in" style="animation-delay: 200ms">
-                    <div class="service-num">03</div>
-                    <div class="service-info">
-                        <h3>Химчистка салона</h3>
-                        <p>Полная очистка и восстановление</p>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 12h20M12 2v20M5.5 5.5l13 13"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
-                    <div class="service-price">от 12 000 ₽ <span class="arrow">→</span></div>
+                    <h3>Химчистка салона</h3>
+                    <p>Полная очистка и восстановление интерьера авто.</p>
+                    <span class="service-price">от 12 000 ₽</span>
                 </div>
-                
-                <div class="service-item fade-in" style="animation-delay: 300ms">
-                    <div class="service-num">04</div>
-                    <div class="service-info">
-                        <h3>Оклейка защитной плёнкой</h3>
-                        <p>Антигравийная защита</p>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M3 9h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
                     </div>
-                    <div class="service-price">от 20 000 ₽ <span class="arrow">→</span></div>
+                    <h3>Оклейка плёнкой</h3>
+                    <p>Антигравийная защита уязвимых зон кузова.</p>
+                    <span class="service-price">от 20 000 ₽</span>
                 </div>
-                
-                <div class="service-item fade-in" style="animation-delay: 400ms">
-                    <div class="service-num">05</div>
-                    <div class="service-info">
-                        <h3>Комплексный детейлинг</h3>
-                        <p>Полный уход снаружи и внутри</p>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7l3-7z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
-                    <div class="service-price">от 25 000 ₽ <span class="arrow">→</span></div>
+                    <h3>Комплексный детейлинг</h3>
+                    <p>Полный уход за автомобилем снаружи и внутри.</p>
+                    <span class="service-price">от 25 000 ₽</span>
                 </div>
-                
-                <div class="service-item fade-in" style="animation-delay: 500ms">
-                    <div class="service-num">06</div>
-                    <div class="service-info">
-                        <h3>Консультация</h3>
-                        <p>Подбор оптимального ухода</p>
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </div>
-                    <div class="service-price">Бесплатно <span class="arrow">→</span></div>
+                    <h3>Консультация</h3>
+                    <p>Подбор оптимального ухода для вашего авто.</p>
+                    <span class="service-price">Бесплатно</span>
                 </div>
             </div>
         </div>
@@ -559,94 +582,46 @@
     <!-- WORKS -->
     <section id="works">
         <div class="container">
-            <h2 class="section-title" style="color: #F2F0EB;">Наши работы</h2>
-            
+            <div class="section-head">
+                <span class="section-tag">Портфолио</span>
+                <h2 class="section-title">Наши работы</h2>
+            </div>
             <div class="gallery-grid">
-                <div class="gallery-item fade-in">
-                    <img src="https://picsum.photos/id/1015/800/600" alt="Работа 1">
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=800&h=500&fit=crop"
+                        alt="Керамика + полировка">
                     <div class="gallery-overlay">
                         <strong>Керамика + полировка</strong>
-                        <p>Toyota Camry</p>
+                        <span>Toyota Camry</span>
                     </div>
                 </div>
-                <div class="gallery-item fade-in" style="animation-delay: 100ms">
-                    <img src="https://picsum.photos/id/201/800/600" alt="Работа 2">
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&h=500&fit=crop"
+                        alt="Химчистка салона">
                     <div class="gallery-overlay">
                         <strong>Полная химчистка</strong>
-                        <p>Hyundai Santa Fe</p>
+                        <span>Hyundai Santa Fe</span>
                     </div>
                 </div>
-                <div class="gallery-item fade-in" style="animation-delay: 200ms">
-                    <img src="https://picsum.photos/id/133/800/600" alt="Работа 3">
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&h=500&fit=crop"
+                        alt="Антигравийная плёнка">
                     <div class="gallery-overlay">
                         <strong>Антигравийная плёнка</strong>
-                        <p>BMW X5</p>
+                        <span>BMW X5</span>
                     </div>
                 </div>
-                <div class="gallery-item fade-in" style="animation-delay: 300ms">
-                    <img src="https://picsum.photos/id/180/800/600" alt="Работа 4">
+                <div class="gallery-item reveal">
+                    <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=800&h=500&fit=crop"
+                        alt="Комплексный детейлинг">
                     <div class="gallery-overlay">
                         <strong>Комплексный детейлинг</strong>
-                        <p>Mercedes GLE</p>
+                        <span>Mercedes GLE</span>
                     </div>
                 </div>
             </div>
-            
-            <div style="text-align: center; margin-top: 60px;">
-                <a href="https://vk.com/bronto_mgn" target="_blank" style="color: #F2F0EB; text-decoration: none; border-bottom: 2px solid #F2F0EB; padding-bottom: 4px;">
-                    Все работы во ВКонтакте →
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- BOOKING -->
-    <section id="booking">
-        <div class="container">
-            <div style="color: #F2F0EB;">
-                <h2 style="font-size: 42px; margin-bottom: 40px;">Запишитесь<br>на детейлинг</h2>
-                <p style="max-width: 380px; opacity: 0.85;">
-                    +7 (XXX) XXX-XX-XX<br>
-                    WhatsApp / Telegram
-                </p>
-                <p style="margin-top: 40px; opacity: 0.7;">
-                    г. Мегион, ул. Примерная, 12<br>
-                    Ежедневно с 09:00 до 20:00
-                </p>
-            </div>
-            
-            <div class="booking-form">
-                <form id="booking-form">
-                    <div class="form-group">
-                        <label>Имя</label>
-                        <input type="text" id="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Телефон</label>
-                        <input type="tel" id="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Услуга</label>
-                        <select id="service">
-                            <option>Керамическое покрытие</option>
-                            <option>Полировка кузова</option>
-                            <option>Химчистка салона</option>
-                            <option>Комплексный детейлинг</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Дата</label>
-                        <input type="date" id="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Марка и модель авто</label>
-                        <input type="text" id="car" placeholder="Например: Toyota Camry" required>
-                    </div>
-                    
-                    <button type="submit" id="submit-btn" class="cta-btn" style="width: 100%; margin-top: 20px; padding: 18px;">
-                        Отправить заявку →
-                    </button>
-                </form>
+            <div class="gallery-link">
+                <a href="https://vk.com/bronto_mgn" target="_blank">Все работы во ВКонтакте →</a>
             </div>
         </div>
     </section>
@@ -654,126 +629,217 @@
     <!-- REVIEWS -->
     <section id="reviews">
         <div class="container">
-            <h2 class="section-title">Что говорят клиенты</h2>
-            
+            <div class="section-head">
+                <span class="section-tag">Отзывы</span>
+                <h2 class="section-title">Что говорят клиенты</h2>
+            </div>
             <div class="reviews-grid">
-                <div class="review-card fade-in">
-                    <div class="stars">★★★★★</div>
-                    <p style="margin-bottom: 24px;">Отличная работа! Машина выглядит как новая. Очень доволен качеством и сервисом.</p>
-                    <strong>Алексей С.</strong><br>
-                    <span style="opacity: 0.7; font-size: 13px;">Toyota Camry • Керамика</span>
+                <div class="review-card reveal">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">Отличная работа! Машина выглядит как новая. Очень доволен качеством и сервисом.</p>
+                    <div class="review-author">
+                        <div class="review-avatar">АС</div>
+                        <div>
+                            <div class="review-name">Алексей С.</div>
+                            <div class="review-car">Toyota Camry • Керамика</div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="review-card fade-in" style="animation-delay: 150ms">
-                    <div class="stars">★★★★★</div>
-                    <p style="margin-bottom: 24px;">Профессиональный подход. Салон пахнет новизной. Рекомендую всем!</p>
-                    <strong>Марина К.</strong><br>
-                    <span style="opacity: 0.7; font-size: 13px;">Hyundai • Химчистка</span>
+                <div class="review-card reveal">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">Профессиональный подход. Салон пахнет новизной. Рекомендую всем!</p>
+                    <div class="review-author">
+                        <div class="review-avatar">МК</div>
+                        <div>
+                            <div class="review-name">Марина К.</div>
+                            <div class="review-car">Hyundai • Химчистка</div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="review-card fade-in" style="animation-delay: 300ms">
-                    <div class="stars">★★★★★</div>
-                    <p style="margin-bottom: 24px;">Быстро, качественно и по адекватной цене. Буду обращаться снова.</p>
-                    <strong>Дмитрий В.</strong><br>
-                    <span style="opacity: 0.7; font-size: 13px;">BMW X5 • Полный детейлинг</span>
+                <div class="review-card reveal">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">Быстро, качественно и по адекватной цене. Буду обращаться снова.</p>
+                    <div class="review-author">
+                        <div class="review-avatar">ДВ</div>
+                        <div>
+                            <div class="review-name">Дмитрий В.</div>
+                            <div class="review-car">BMW X5 • Полный детейлинг</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- BOOKING -->
+    <section id="booking">
+        <div class="container">
+            <div class="booking-grid">
+                <div class="booking-info reveal">
+                    <span class="section-tag">Запись</span>
+                    <h2>Запишитесь<br>на <span class="accent">детейлинг</span></h2>
+                    <p>Оставьте заявку и мы свяжемся с вами в течение 30 минут для подтверждения записи.</p>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2c-10.5-.92-18.92-9.34-19.84-19.84A2 2 0 0 1 4.09 0h3a2 2 0 0 1 2 1.72c.14 1.19.56 2.33 1.22 3.33a2 2 0 0 1-.45 2.54l-1.27 1.27a16 16 0 0 0 6.58 6.58l1.27-1.27a2 2 0 0 1 2.54-.45c1 .66 2.14 1.08 3.33 1.22a2 2 0 0 1 1.72 2z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div><span>Телефон</span><strong>+7 (XXX) XXX-XX-XX</strong></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div><span>Мессенджеры</span><strong>WhatsApp / Telegram</strong></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div><span>Адрес</span><strong>г. Мегион, ул. Примерная, 12</strong></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div><span>Режим работы</span><strong>Ежедневно 09:00 – 20:00</strong></div>
+                    </div>
+                </div>
+                <div class="booking-form reveal">
+                    <h3>Онлайн-запись</h3>
+                    <form id="booking-form">
+                        <div class="form-group">
+                            <label for="name">Имя</label>
+                            <input type="text" id="name" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон</label>
+                            <input type="tel" id="phone" placeholder="+7 (___) ___-__-__" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Услуга</label>
+                            <select id="service">
+                                <option>Керамическое покрытие</option>
+                                <option>Полировка кузова</option>
+                                <option>Химчистка салона</option>
+                                <option>Оклейка плёнкой</option>
+                                <option>Комплексный детейлинг</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="car">Марка и модель</label>
+                            <input type="text" id="car" placeholder="Например: Toyota Camry" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Дата</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <button type="submit" id="submit-btn" class="btn btn-primary btn-submit">
+                            Отправить заявку →
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 BRONTO DETAILING. Все права защищены.</p>
-            <p style="margin-top: 12px; opacity: 0.6;">
-                <a href="https://vk.com/bronto_mgn" target="_blank" style="color: inherit;">VK</a> • 
-                <a href="https://instagram.com/bronto.detailing" target="_blank" style="color: inherit;">Instagram</a>
-            </p>
+            <div class="footer-inner">
+                <span class="footer-copy">© 2026 BRONTO DETAILING. Все права защищены.</span>
+                <div class="footer-links">
+                    <a href="https://vk.com/bronto_mgn" target="_blank">VK</a>
+                    <a href="https://instagram.com/bronto.detailing" target="_blank">Instagram</a>
+                    <a href="https://wa.me/" target="_blank">WhatsApp</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Custom Cursor -->
+    <!-- Custom cursor -->
     <div class="custom-cursor" id="cursor"></div>
 
     <script>
-        // Scroll animations
-        function handleScroll() {
-            const elements = document.querySelectorAll('.fade-in');
-            elements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top <= window.innerHeight * 0.85) {
-                    el.classList.add('visible');
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu toggle
+        const burger = document.getElementById('burger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        burger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+        function closeMobile() { mobileMenu.classList.remove('open'); }
+
+        // Reveal on scroll (IntersectionObserver)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((e, i) => {
+                if (e.isIntersecting) {
+                    setTimeout(() => e.target.classList.add('visible'), i * 80);
+                    observer.unobserve(e.target);
                 }
             });
-        }
-        
-        window.addEventListener('scroll', handleScroll);
-        window.addEventListener('load', () => {
-            handleScroll();
-        });
-        
-        // Form submission simulation
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Form submission
         const form = document.getElementById('booking-form');
         const submitBtn = document.getElementById('submit-btn');
-        
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', function (e) {
             e.preventDefault();
-            
-            const originalText = submitBtn.innerHTML;
-            submitBtn.style.transition = 'all 0.3s';
+            const original = submitBtn.innerHTML;
             submitBtn.innerHTML = 'Отправляем...';
             submitBtn.disabled = true;
-            
             setTimeout(() => {
-                submitBtn.innerHTML = 'Заявка отправлена ✓';
-                submitBtn.style.backgroundColor = '#166534';
-                
+                submitBtn.innerHTML = '✓ Заявка отправлена';
+                submitBtn.style.background = 'linear-gradient(135deg,#166534,#22c55e)';
                 setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.style.backgroundColor = '';
+                    submitBtn.innerHTML = original;
+                    submitBtn.style.background = '';
                     submitBtn.disabled = false;
                     form.reset();
-                }, 2800);
+                }, 2500);
             }, 1200);
         });
-        
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function (e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
         // Custom cursor
         const cursor = document.getElementById('cursor');
-        
         if (window.innerWidth > 1200) {
             document.addEventListener('mousemove', (e) => {
                 cursor.style.left = e.clientX + 'px';
                 cursor.style.top = e.clientY + 'px';
             });
-            
-            const interactiveElements = document.querySelectorAll('a, button, input, select');
-            interactiveElements.forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    cursor.style.width = '36px';
-                    cursor.style.height = '36px';
-                });
-                el.addEventListener('mouseleave', () => {
-                    cursor.style.width = '20px';
-                    cursor.style.height = '20px';
-                });
+            document.querySelectorAll('a, button, input, select').forEach(el => {
+                el.addEventListener('mouseenter', () => { cursor.style.width = '36px'; cursor.style.height = '36px'; });
+                el.addEventListener('mouseleave', () => { cursor.style.width = '20px'; cursor.style.height = '20px'; });
             });
         }
-        
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if (this.getAttribute('href') !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
-        
-        console.log('%cBRONTO DETAILING — сайт готов к использованию', 'color: #1C1C1E; font-family: Unbounded; font-size: 14px;');
     </script>
 </body>
+
 </html>
